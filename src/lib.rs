@@ -175,7 +175,7 @@ impl From<(Block, Vec<String>, Vec<String>)> for BlockAnswered {
                             correct_answer,
                         };
                     });
-                todo!()
+                Self::Paragraph(paragraph_items)
             }
             Block::Answered(_) => panic!("You can't answer already answered block"),
         }
