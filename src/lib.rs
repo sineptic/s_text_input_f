@@ -5,7 +5,7 @@ use std::{collections::BTreeSet, num::ParseIntError};
 
 pub type Blocks = Vec<Block>;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 #[non_exhaustive]
 pub enum Block {
     /// # Response
@@ -25,7 +25,7 @@ pub enum Block {
 }
 
 pub type Paragraph = Vec<ParagraphItem>;
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum ParagraphItem {
     Text(String),
     Placeholder,
@@ -101,7 +101,7 @@ pub fn response_as_placeholders(response: ResponseItem) -> Vec<String> {
 }
 
 #[non_exhaustive]
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum BlockAnswered {
     Order {
         items: Vec<String>,
@@ -120,7 +120,7 @@ pub enum BlockAnswered {
     },
     Paragraph(Vec<ParagraphItemAnswered>),
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum ParagraphItemAnswered {
     Text(String),
     Answer {
