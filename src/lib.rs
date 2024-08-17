@@ -98,6 +98,7 @@ pub fn response_as_placeholders(response: ResponseItem) -> Vec<String> {
     response
 }
 
+#[derive(Debug, Serialize, Deserialize)]
 pub enum BlockAnswered {
     Order {
         items: Vec<String>,
@@ -116,6 +117,7 @@ pub enum BlockAnswered {
     },
     Paragraph(Vec<ParagraphItemAnswered>),
 }
+#[derive(Debug, Serialize, Deserialize)]
 pub enum ParagraphItemAnswered {
     Text(String),
     Answer {
