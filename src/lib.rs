@@ -6,6 +6,7 @@ use std::{collections::BTreeSet, num::ParseIntError};
 pub type Blocks = Vec<Block>;
 
 #[derive(Debug, Serialize, Deserialize)]
+#[non_exhaustive]
 pub enum Block {
     /// # Response
     /// Vec of starting positions(stating from 0; stringified) of each elem in the same order as it's displayed for user on
@@ -20,6 +21,7 @@ pub enum Block {
     /// # Response
     /// Vec of all placeholder answers in same order.
     Paragraph(Paragraph),
+    Answered(BlockAnswered),
 }
 
 pub type Paragraph = Vec<ParagraphItem>;
@@ -98,6 +100,7 @@ pub fn response_as_placeholders(response: ResponseItem) -> Vec<String> {
     response
 }
 
+#[non_exhaustive]
 #[derive(Debug, Serialize, Deserialize)]
 pub enum BlockAnswered {
     Order {
@@ -174,6 +177,7 @@ impl From<(Block, Vec<String>, Vec<String>)> for BlockAnswered {
                     });
                 todo!()
             }
+            Block::Answered(_) => panic!("You can't answer already answered block"),
         }
     }
 }
