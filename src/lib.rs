@@ -181,17 +181,13 @@ impl From<(Block, Vec<String>, Vec<String>)> for BlockAnswered {
         }
     }
 }
-pub fn to_asnwered(
-    blocks: Blocks,
-    user_answers: Response,
-    correct_answers: Response,
-) -> Vec<BlockAnswered> {
+pub fn to_asnwered(blocks: Blocks, user_answers: Response, correct_answers: Response) -> Blocks {
     assert_eq!(user_answers.len(), correct_answers.len());
     blocks
         .into_iter()
         .zip(user_answers.into_iter().zip(correct_answers))
         .map(|(block, (user_answer, correct_answer))| {
-            BlockAnswered::from((block, user_answer, correct_answer))
+            Block::Answered(BlockAnswered::from((block, user_answer, correct_answer)))
         })
         .collect()
 }
