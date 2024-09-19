@@ -181,7 +181,7 @@ impl From<(Block, Vec<String>, Vec<String>)> for BlockAnswered {
         }
     }
 }
-pub fn to_asnwered(
+pub fn to_answered(
     blocks: Blocks,
     user_answers: Response,
     correct_answers: Response,
