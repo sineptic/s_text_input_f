@@ -33,19 +33,19 @@ pub enum ParagraphItem {
 
 pub type Response = Vec<ResponseItem>;
 pub type ResponseItem = Vec<String>;
-pub fn eq_response(a: &Response, b: &Response, trim: bool, case_insensetive: bool) -> bool {
+pub fn eq_response(a: &Response, b: &Response, trim: bool, case_insensitive: bool) -> bool {
     if a.len() != b.len() {
         return false;
     }
     a.iter()
         .zip(b)
-        .all(|(a, b)| eq_response_item(a, b, trim, case_insensetive))
+        .all(|(a, b)| eq_response_item(a, b, trim, case_insensitive))
 }
 fn eq_response_item(
     a: &ResponseItem,
     b: &ResponseItem,
     trim: bool,
-    case_insensetive: bool,
+    case_insensitive: bool,
 ) -> bool {
     if a.len() != b.len() {
         return false;
@@ -53,7 +53,7 @@ fn eq_response_item(
     a.iter().zip(b).all(|(a, b)| {
         if trim {
             let (a, b) = (a.trim(), b.trim());
-            if case_insensetive {
+            if case_insensitive {
                 let (a, b) = (a.to_lowercase(), b.to_lowercase());
                 a == b
             } else {
@@ -61,7 +61,7 @@ fn eq_response_item(
             }
         } else {
             #[allow(clippy::collapsible_if)]
-            if case_insensetive {
+            if case_insensitive {
                 let (a, b) = (a.to_lowercase(), b.to_lowercase());
                 a == b
             } else {
