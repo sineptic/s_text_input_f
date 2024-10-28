@@ -4,6 +4,10 @@ use serde::{Deserialize, Serialize};
 use std::{collections::BTreeSet, num::ParseIntError};
 
 pub type Blocks = Vec<Block>;
+pub struct BlocksWithAnswer {
+    pub blocks: Blocks,
+    pub answer: Response,
+}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[non_exhaustive]
